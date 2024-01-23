@@ -7,7 +7,14 @@
 
 	"postCreateCommand": "bash scripts/install-dev-tools.sh",
 
-	"runArgs": ["--platform", "linux/amd64"],
+	//"runArgs": ["--platform", "linux/amd64"],
+
+	"mounts": [
+		// Re-use local SSH keys (useful if you use SSH keys for Git repo access or other SSH work)
+		// "source=${localEnv:HOME}/.ssh,target=/home/user/.ssh,type=bind,consistency=cached",
+		// Re-use local Git configuration
+		// "source=${localEnv:HOME}/.gitconfig,target=/home/user/.gitconfig,type=bind,consistency=cached"
+	],
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
