@@ -1,35 +1,34 @@
+# Devcontainer 101
 
-# Python 3 (python)
+This is the repository for the PyConDE 2024 talk "Unlock the Power of Dev Containers: Build a Consistent Python Development Environment in Seconds!". The slides of the talk can be found [here](docs/pycon_2024.pdf).
 
-Develop Python 3 applications.
+## Why should you use DevContainers?
+If you want a reproducible development environment in Python that is easy to set up, then DevContainers are a good choice, if not the best. DevContainer allows you to define the operating system and system libraries next to the Python packages and the Python interpreter. All together this results in an always robust, reproducible development environment.
 
-## Options
+## How to use DevContainers?
+DevContainers are now supported by a large number of IDEs, which means next to VSCode also PyCharm and Nvim, for example. Furthermore, next to Github, more and more remote development platforms support DevContainers. The prerequisite is that [docker](https://docs.docker.com/engine/install/) is installed on the computer.
 
-| Options Id | Description | Type | Default Value |
-|-----|-----|-----|-----|
-| imageVariant | Python version (use -bookworm, or -bullseye variants on local arm64/Apple Silicon): | string | 3.12-bullseye |
+## Wo kann ich mehr zum Thema DevContainer lernen?
+A wonderful source of inspiration can be found in the [VSCode DevContainer documentation](https://code.visualstudio.com/docs/remote/containers). The DevContainer specification can be viewed [here](https://containers.dev/).
 
-This template references an image that was [pre-built](https://containers.dev/implementors/reference/#prebuilding) to automatically include needed devcontainer.json metadata.
+## Wie kann ich DevContainer in meinem Projekt nutzen?
+In this repository you will find an example of how you can use DevContainer in your project. All you have to do is copy the file `.devcontainer/devcontainer.json` into your project and adapt the file `.devcontainer/Dockerfile`. You can then start the development environment by clicking on the green icon in the bottom left-hand corner of VSCode.
 
-* **Image**: mcr.microsoft.com/devcontainers/python ([source](https://github.com/devcontainers/images/tree/main/src/python))
-* **Applies devcontainer.json contents from image**: Yes ([source](https://github.com/devcontainers/images/blob/main/src/python/.devcontainer/devcontainer.json))
+If you are interested in more complex setups, we recommend the following repositories:
 
-## Installing or updating Python utilities
+- [Devcontainer Pytorch Example](https://github.com/pd-t/devcontainer-pytorch-template)
+- [Devcontainer S3 Example](https://github.com/pd-t/s3-devcontainer)
+- [DevContainer Docker Example](https://github.com/pd-t/docker-devcontainer-template)
 
-This container installs all Python development utilities using [pipx](https://pipxproject.github.io/pipx/) to avoid impacting the global Python environment. You can use this same utility add additional utilities in an isolated environment. For example:
+## Tips and Tricks
+There is an issue installing vscode extensions using MacOS (https://github.com/microsoft/vscode/issues/173327). In case you use MacOS please be sure to uncomment the following line in the `.devcontainer.json` file:
 
-```bash
-pipx install prospector
+```json
+    "extensions.verifySignature": false
 ```
 
-See the [pipx documentation](https://pipxproject.github.io/pipx/docs/) for additional information.
+MacOS users can also use native x86_64 images very well using [Rosetta](https://www.docker.com/blog/docker-desktop-4-25/). If you want to explicitly use an x86_64 image, you have to add the following line to the `.devcontainer.json` file:
 
-
-
----
-
-_Note: This file was auto-generated from the [devcontainer-template.json](https://github.com/devcontainers/templates/blob/main/src/python/devcontainer-template.json).  Add additional notes to a `NOTES.md`._
-
-TEST
-
-TESt
+```json
+    "runArgs": ["--platform", "linux/amd64"],
+```
